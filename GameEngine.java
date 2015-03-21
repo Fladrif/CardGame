@@ -1,10 +1,8 @@
-import java.util.Scanner;
-
 public class GameEngine{
 	Deck deck;
 	Hand dealer, hand1;
-	Scanner scan = new Scanner(System.in);
 	int pot, wager;
+	int PRIZE_PAYOUT = 2;
 	public GameEngine(){
 		pot = 50;
 		wager = 0;
@@ -103,7 +101,7 @@ public class GameEngine{
 		return pot;
 	}
 	public boolean payoutPlayer(){
-		pot = pot + (2 * wager);
+		pot = pot + (PRIZE_PAYOUT * wager);
 		return true;
 	}
 }
