@@ -22,8 +22,12 @@ public class GameLogic{
 				response = inout.getResponse();
 			}
 			engine.dealerPlays();
+			inout.setMessage("Dealer hand: ");
 			inout.displayHand(engine.getDealerHand());
+			inout.setMessage("" + engine.calDealerHand() + "\n");
+			inout.setMessage("Player hand: ");
 			inout.displayHand(engine.getPlayerHand());
+			inout.setMessage("" + engine.calPlayerHand() + "\n");
 			if(engine.isPlayerWin()){
 				inout.setMessage("Congratulations, you win!\n");
 				engine.payoutPlayer();
