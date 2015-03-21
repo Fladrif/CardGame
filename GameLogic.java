@@ -11,24 +11,27 @@ public class GameLogic{
 				bet = inout.getWager();
 			}while(!engine.setWager(bet));
 			inout.displayHand(engine.getPlayerHand());
-			inout.setMessage("Hit or stay?");
-			while(inout.getResponse().equals("hit")){
+			inout.setMessage("Hit or stay? ");
+			String response = inout.getResponse();
+			response = inout.getResponse();
+			while(response.equals("hit")){
 				engine.playerDeal();
 				inout.displayHand(engine.getPlayerHand());
 				if(engine.calPlayerHand() > 21) break;
-				inout.setMessage("Hit or stay?");
+				inout.setMessage("Hit or stay? ");
+				response = inout.getResponse();
 			}
 			engine.dealerPlays();
 			inout.displayHand(engine.getDealerHand());
 			inout.displayHand(engine.getPlayerHand());
 			if(engine.isPlayerWin()){
-				inout.setMessage("Congratulations, you win!");
+				inout.setMessage("Congratulations, you win!\n");
 				engine.payoutPlayer();
 			}else {
-				inout.setMessage("Suck it up, you lost!");
+				inout.setMessage("Suck it up, you lost!\n");
 			}
 			if(engine.getPot() <= 0){
-				inout.setMessage("You're out of money, get out!");
+				inout.setMessage("You're out of money, get out!\n");
 				break;
 			}
 		}

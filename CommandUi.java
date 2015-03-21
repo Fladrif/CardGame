@@ -6,20 +6,20 @@ public class CommandUi implements Ui{
 		GameLogic logic = new GameLogic(this);
 	}
 	public void setMessage(String message){
-		System.out.println(message);
+		System.out.print(message);
 	}
 	public String getResponse(){
 		String response = scan.nextLine();
 		return response;
 	}
-	public void displayHand(Hand hand){
-		for(Card a : hand.showHand().showHand()){
-			System.out.print(a + " ");
+	public void displayHand(Card[] hand){
+		for(Card a : hand){
+			System.out.print(a.print() + " ");
 		}
 		System.out.println();
 	}
-	public int getWager(int bet){
-		int wager = scan.getNextInt();
+	public int getWager(){
+		int wager = scan.nextInt();
 		return wager;
 	}
 }

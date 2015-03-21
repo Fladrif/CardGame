@@ -9,12 +9,13 @@ public class GameEngine{
 		deck = new Deck();
 		deck.shuffle();
 	}
+	/*
 	total = 0
 
 	for (Card card : hand.showHand()) {
       total = total + card.getValue()
 	}
-
+	*/
 	private int calHand(Hand hand){
 		int total = 0, ace = 0;
 		for(Card card : hand.showHand()){
