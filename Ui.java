@@ -1,6 +1,6 @@
 interface Ui{
-	public Ui(){
-		GameLogic logic = new GameLogic(this);
-	}
-	public 
+	public void setMessage(String message);
+	public String getResponse();
+	public void displayHand(Hand hand);
+	public int getWager(int bet);
 }
