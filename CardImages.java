@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class CardImages{
 	ImageIcon s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, sj, sq, sk;
 	ImageIcon c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, cj, cq, ck;
