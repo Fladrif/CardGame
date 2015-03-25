@@ -10,24 +10,20 @@ public class GameLogic{
 				inout.setMessage("You have " + engine.getPot() + " pieces. \nPlace your wager: ");
 				bet = inout.getWager();
 			}while(!engine.setWager(bet));
-			inout.displayHand(engine.getPlayerHand());
+			inout.displayHand("PLayer", engine.getPlayerHand(), engine.calPlayerHand());
 			inout.setMessage("Hit or stay? ");
 			String response = inout.getResponse();
 			response = inout.getResponse();
 			while(response.equals("hit")){
 				engine.playerDeal();
-				inout.displayHand(engine.getPlayerHand());
+				inout.displayHand("PLayer", engine.getPlayerHand(), engine.calPlayerHand());
 				if(engine.calPlayerHand() > 21) break;
 				inout.setMessage("Hit or stay? ");
 				response = inout.getResponse();
 			}
 			engine.dealerPlays();
-			inout.setMessage("Dealer hand: ");
-			inout.displayHand(engine.getDealerHand());
-			inout.setMessage("" + engine.calDealerHand() + "\n");
-			inout.setMessage("Player hand: ");
-			inout.displayHand(engine.getPlayerHand());
-			inout.setMessage("" + engine.calPlayerHand() + "\n");
+			inout.displayHand("Dealer", engine.getDealerHand(), engine.calDealerHand());
+			inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
 			if(engine.isPlayerWin()){
 				inout.setMessage("Congratulations, you win!\n");
 				engine.payoutPlayer();

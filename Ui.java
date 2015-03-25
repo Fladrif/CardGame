@@ -1,6 +1,6 @@
 interface Ui{
 	public void setMessage(String message);
 	public String getResponse();
-	public void displayHand(Card[] hand);
+	public void displayHand(String name, Card[] hand, int value);
 	public int getWager();
 }
