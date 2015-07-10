@@ -23,4 +23,7 @@ public class CommandUi implements Ui{
 		int wager = scan.nextInt();
 		return wager;
 	}
+	public void displayPot(int pot){
+		System.out.println("You have " + pot + " coins. How much do you bet?");
+	}
 }

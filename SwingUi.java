@@ -11,11 +11,9 @@ public class SwingUi{
 	SpinnerNumberModel wageModel;
 	JLabel messageLab, pot;
 	JLabel[] pHand, dHand;
-	GameEngine game;
 	int wage = 5;
 	CardImages image;
 	public SwingUi(){
-		game = new GameEngine();
 		image = new CardImages();
 		frame = new JFrame("BlackJack");
 		frame.setSize(700,500);
@@ -27,7 +25,6 @@ public class SwingUi{
 		hit.setEnabled(false);
 		hit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
-
 				SwingUtilities.invokeLater(new Runnable(){
 					public void run(){
 						frame.validate();
@@ -52,7 +49,7 @@ public class SwingUi{
 				wage = (int)wageSpinner.getValue();
 			}
 		});
-		pot = new JLabel(Integer.toString(game.getPot()));
+		pot = new JLabel("0");
 		butPane = new JPanel(new GridLayout(0,4,50,50));
 		butPane.add(hit);
 		butPane.add(stay);
@@ -66,15 +63,22 @@ public class SwingUi{
 		frame.add(handPane);
 		frame.add(messageLab);
 		frame.add(butPane);
-		while(true){
-			game.startGame();
-			pHand = new JLabel[game.getPlayerHand().length];
-			dHand = new JLabel[game.getDealerHand().length];
-			for(int i = 0; i < game.getPlayerHand().length; i++){
-				pHand[i] = new JLabel(image.getIconVar(game.getPlayerHand()[i].print()));
-				dHand[i] = new JLabel(image.getIconVar(game.getDealerHand()[i].print()));
-			}
-			
-		}
+	}
+	public void setMessage(String message){
+	}
+	public String getResponse(){
+		String resp = null;
+		return resp;
+	}
+	public void displayHand(String name, Card[] hand, int value){
+	}
+	public int getWager(){
+		int wager = 0;
+
+		return wager;
+	}
+	public void displayPot(int pot){
+		frame.validate();
+		frame.repaint();
 	}
 }

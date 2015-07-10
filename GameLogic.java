@@ -7,7 +7,7 @@ public class GameLogic{
 			engine.startGame();
 			int bet;
 			do{
-				inout.setMessage("You have " + engine.getPot() + " pieces. \nPlace your wager: ");
+				inout.displayPot(engine.getPot());
 				bet = inout.getWager();
 			}while(!engine.setWager(bet));
 			inout.displayHand("PLayer", engine.getPlayerHand(), engine.calPlayerHand());
