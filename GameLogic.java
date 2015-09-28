@@ -10,13 +10,12 @@ public class GameLogic{
 				inout.displayPot(engine.getPot());
 				bet = inout.getWager();
 			}while(!engine.setWager(bet));
-			inout.displayHand("PLayer", engine.getPlayerHand(), engine.calPlayerHand());
+			inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
 			inout.setMessage("Hit or stay? ");
 			String response = inout.getResponse();
-			response = inout.getResponse();
 			while(response.equals("hit")){
 				engine.playerDeal();
-				inout.displayHand("PLayer", engine.getPlayerHand(), engine.calPlayerHand());
+				inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
 				if(engine.calPlayerHand() > 21) break;
 				inout.setMessage("Hit or stay? ");
 				response = inout.getResponse();

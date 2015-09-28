@@ -6,11 +6,7 @@ public class Main {
 		if(args[0].equals("cli")){
 			CommandUi run = new CommandUi();
 		} else if (args[0].equals("gui")){
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run(){
-					new SwingUi();
-				}
-			});
+			new SwingUi();
 		}
 	}
 
