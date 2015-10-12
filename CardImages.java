@@ -22,7 +22,7 @@ public class CardImages{
 		c1 = new ImageIcon("CardImages/c1.png");
 		c2 = new ImageIcon("CardImages/c2.png");
 		c3 = new ImageIcon("CardImages/c3.png");
-		c4 = new ImageIcon("CardImages/c4,png");
+		c4 = new ImageIcon("CardImages/c4.png");
 		c5 = new ImageIcon("CardImages/c5.png");
 		c6 = new ImageIcon("CardImages/c6.png");
 		c7 = new ImageIcon("CardImages/c7.png");
