@@ -3,9 +3,13 @@ public class GameLogic{
 	public GameLogic(Ui inout){
 		engine = new GameEngine();
 		inout.setMessage("Welcome to BlackJack.");
+
+		//Start loop for entire game
 		while(true){
 			engine.startGame();
 			int bet;
+
+			//start loop to take in valid bet
 			do{
 				inout.displayPot(engine.getPot());
 				bet = inout.getWager();
@@ -13,6 +17,8 @@ public class GameLogic{
 			inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
 			inout.setMessage("Hit or stay? ");
 			String response = inout.getResponse();
+
+			//start loop for gameplay for player
 			while(response.equals("hit")){
 				engine.playerDeal();
 				inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
@@ -20,9 +26,14 @@ public class GameLogic{
 				inout.setMessage("Hit or stay? ");
 				response = inout.getResponse();
 			}
+
+			//runs dealer's play
 			engine.dealerPlays();
+
 			inout.displayHand("Dealer", engine.getDealerHand(), engine.calDealerHand());
 			inout.displayHand("Player", engine.getPlayerHand(), engine.calPlayerHand());
+
+			//Do end game winnings calculations and message
 			if(engine.isPlayerWin()){
 				inout.setMessage("Congratulations, you win!\n");
 				engine.payoutPlayer();

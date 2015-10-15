@@ -1,6 +1,8 @@
 public class Hand{
 	Card[] hand;
-	public Hand(){
+	Player owner;
+	public Hand(Player who){
+		owner = who;
 		hand = new Card[0];
 	}
 	public void addCard(Card card){
@@ -16,5 +18,8 @@ public class Hand{
 	}
 	public int handSize(){
 		return hand.length;
+	}
+	public Player getOwner(){
+		return owner;
 	}
 }

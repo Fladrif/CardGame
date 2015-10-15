@@ -1,21 +1,22 @@
+import java.util.*;
+
 public class GameEngine{
 	Deck deck;
 	Hand dealer, hand1;
+	LinkedList<Hand> hand;
+	//Declaring Player variables for: player
+	//Player dealer;
+	Player[] player;
 	int pot, wager;
 	int PRIZE_PAYOUT = 2;
+
 	public GameEngine(){
 		pot = 50;
 		wager = 0;
 		deck = new Deck();
 		deck.shuffle();
 	}
-	/*
-	total = 0
-
-	for (Card card : hand.showHand()) {
-      total = total + card.getValue()
-	}
-	*/
+	
 	private int calHand(Hand hand){
 		int total = 0, ace = 0;
 		for(Card card : hand.showHand()){
@@ -47,14 +48,12 @@ public class GameEngine{
 		}
 	}
 	public void startGame(){
-		if(deck.deckSize() < (4*3)){
+		if(deck.deckSize() < ((player.length + 1) * 3)){
 			deck = new Deck();
 			deck.shuffle();
 		}
 		hand1 = new Hand();
 		dealer = new Hand();
-		//NUMBER_OF_CARDS_TO_DEAL_INITIALLY = 2
-		//for (i=0; i<NUM...; i++) {
 		hand1.addCard(deck.deal());
 		dealer.addCard(deck.deal());
 		hand1.addCard(deck.deal());
