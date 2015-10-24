@@ -2,19 +2,28 @@ import java.util.*;
 
 public class GameEngine{
 	Deck deck;
-	Hand dealer, hand1;
+	//Hand dealer, hand1;
+	Hand playerHand;
 	LinkedList<Hand> hand;
-	//Declaring Player variables for: player
-	//Player dealer;
+	//Declaring Player variables
+	Player dealer;
 	Player[] player;
-	int pot, wager;
+	Iterator<Hand> filterate;
+	//int pot, wager;
 	int PRIZE_PAYOUT = 2;
 
 	public GameEngine(){
-		pot = 50;
-		wager = 0;
+		//pot = 50;
+		//wager = 0;
 		deck = new Deck();
 		deck.shuffle();
+		dealer = new Player("Dealer", 0111);
+	}
+
+	//Needs to find and return (next?) hand from 'hand' given
+	//the player's ID number
+	private void makeFilterate(int playerId){
+		filterate = hand.stream().filter((hands) -> hands.getPlayerId() == playerId).iterate();
 	}
 	
 	private int calHand(Hand hand){
@@ -42,38 +51,97 @@ public class GameEngine{
 		}
 		return total;
 	}
+	/*
+		Need to redo dealerPlays() so that the now defunct dealer
+		calls new 'hand' variable and finds the correct hand
+		that belongs to the dealer through Hand.getPlayerId()
+
+		*May need to investiage using Predicate, or will need
+		to end up writing a function that will perform the search
+		and return correct index location of the hand.
+	*/
 	public void dealerPlays(){
+		makeFilterate(0111);
+		Hand handHold = filterate.next();
+		while(calHand(handHold) < 17){
+			handHold.addCard(deck.deal());
+		}
+	/*
 		while(calHand(dealer) < 17){
 			dealer.addCard(deck.deal());
 		}
+	*/
 	}
-	public void startGame(){
+
+	public void startGame(Player[] players){
+		//taking which players are participating
+		player = players;
+
+		//checks if deck has enough cards to play (3 x # players)
+		//if not, will create new deck and shuffle up
 		if(deck.deckSize() < ((player.length + 1) * 3)){
 			deck = new Deck();
 			deck.shuffle();
 		}
+
+		//add Player's hands to linkedlist
+		hand.clear();
+		hand.add(new Hand(dealer.getId()));
+		for(Player p : player){
+			hand.add(new Hand(p.getId()));
+		}
+
+		//Dealing cards to each player
+		for(int i = 0; i < 2; i++){
+			ListIterator<Hand> iterate = hand.listIterator();
+			while(iterate.hasNext()){
+				iterate.next().addCard(deck.deal());
+			}
+		}
+
+		/* Old method to instantiate hands and deal
+
 		hand1 = new Hand();
 		dealer = new Hand();
 		hand1.addCard(deck.deal());
 		dealer.addCard(deck.deal());
 		hand1.addCard(deck.deal());
 		dealer.addCard(deck.deal());
+		*/
 	}
+
+	/*
+		Need to fix all the deal and calculate hands so that the
+		correct hand can be pulled out of the list via index
+
+		Create 1 more function that will iterate through a player's
+		hand, returning bool if there is another hand or not
+	*/
+	public boolean nextHand(){
+		boolean flag = filterate.hasNext();
+		if(flag) playerHand = filterate.next();
+		return flag;
+	}
+
 	public void playerDeal(){
-		hand1.addCard(deck.deal());
+		playerHand.addCard(deck.deal());
 	}
 	public int calPlayerHand(){
-		return calHand(hand1);
+		return calHand(playerHand);
 	}
+	/*
 	public int calDealerHand(){
-		return calHand(dealer);
+		return calHand(playerHand);
 	}
+	*/
 	public Card[] getPlayerHand(){
-		return hand1.showHand();
+		return playerHand.showHand();
 	}
+	/*
 	public Card[] getDealerHand(){
-		return dealer.showHand();
+		return playerHand.showHand();
 	}
+	*/
 
 	public boolean isPlayerWin(){
 		if(calHand(hand1) <= 21 && calHand(dealer) <= 21){
@@ -88,7 +156,8 @@ public class GameEngine{
 			return false;
 		}
 	}
-	public boolean setWager(int bet){
+	public boolean setWager(int bet, Player person){
+		/*
 		wager = bet;
 		if(bet > pot){
 			return false;
@@ -96,12 +165,16 @@ public class GameEngine{
 			pot -= bet;
 			return true;
 		}
+		*/
+		
+		return person.setWager(bet);
 	}
-	public int getPot(){
-		return pot;
+	public int getPot(Player person){
+		return person.getTotal();
 	}
-	public boolean payoutPlayer(){
-		pot = pot + (PRIZE_PAYOUT * wager);
+	public boolean payoutPlayer(Player person){
+		//pot = pot + (PRIZE_PAYOUT * wager);
+		person.setTotal(person.getTotal() + (PRIZE_PAYOUT * person.getWager()));
 		return true;
 	}
 }

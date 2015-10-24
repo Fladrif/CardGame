@@ -1,8 +1,8 @@
 public class Hand{
 	Card[] hand;
-	Player owner;
-	public Hand(Player who){
-		owner = who;
+	int playerId;
+	public Hand(int who){
+		playerId = who;
 		hand = new Card[0];
 	}
 	public void addCard(Card card){
@@ -19,7 +19,7 @@ public class Hand{
 	public int handSize(){
 		return hand.length;
 	}
-	public Player getOwner(){
-		return owner;
+	public int getPlayerId(){
+		return playerId;
 	}
 }

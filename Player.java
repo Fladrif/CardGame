@@ -12,7 +12,7 @@ public class Player{
 	public String getName(){
 		return name;
 	}
-	public void buyIn(int amount){
+	public void setTotal(int amount){
 		total = amount;
 	}
 	public boolean setWager(int wage){
