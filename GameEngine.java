@@ -17,7 +17,7 @@ public class GameEngine{
 		//wager = 0;
 		deck = new Deck();
 		deck.shuffle();
-		dealer = new Player("Dealer", 0111);
+		dealer = new Player("Dealer", 111);
 	}
 
 	//Needs to find and return (next?) hand from 'hand' given
@@ -123,6 +123,11 @@ public class GameEngine{
 		return flag;
 	}
 
+	//Gets and returns first hand of given player in the list
+	public Hand getHand(int playerId){
+		return hand.stream().filter((hands) -> hands.getPlayerId() == playerId).toArray()[0];
+	}
+
 	public void playerDeal(){
 		playerHand.addCard(deck.deal());
 	}
@@ -144,13 +149,13 @@ public class GameEngine{
 	*/
 
 	public boolean isPlayerWin(){
-		if(calHand(hand1) <= 21 && calHand(dealer) <= 21){
-			if(calHand(hand1) > calHand(dealer)){
+		if(calHand(playerHand) <= 21 && calHand(getHand(dealer.getId())) <= 21){
+			if(calHand(playerHand) > calHand(getHand(dealer.getId()))){
 				return true;
 			} else {
 				return false;
 			}
-		} else if (calHand(hand1) <= 21 && calHand(dealer) > 21){
+		} else if (calHand(playerHand) <= 21 && calHand(gethand(dealer.getId())) > 21){
 			return true;
 		} else {
 			return false;
