@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class CommandUi implements Ui{
 	Scanner scan = new Scanner(System.in);
 	public CommandUi(){
-		GameLogic logic = new GameLogic(this);
 	}
 	public void setMessage(String message){
 		System.out.print(message);
