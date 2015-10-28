@@ -1,12 +1,20 @@
 public class GameLogic{
 	GameEngine engine;
+
+	//Normally would get player array from constructor arg
+	//instead of instantiating inside 
 	public GameLogic(Ui inout){
 		engine = new GameEngine();
+
+		//Temporary before implementing client/server
+		Player[] players = new Player[1];
+		players[0] = new Player("You", 1);
+
 		inout.setMessage("Welcome to BlackJack.");
 
 		//Start loop for entire game
 		while(true){
-			engine.startGame();
+			engine.startGame(players);
 			int bet;
 
 			//start loop to take in valid bet

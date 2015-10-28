@@ -86,10 +86,10 @@ public class GameEngine{
 
 		//add Player's hands to linkedlist
 		hand.clear();
-		hand.add(new Hand(dealer.getId()));
 		for(Player p : player){
 			hand.add(new Hand(p.getId()));
 		}
+		hand.add(new Hand(dealer.getId()));
 
 		//Dealing cards to each player
 		for(int i = 0; i < 2; i++){
