@@ -21,6 +21,7 @@ public class CommandUi implements Ui{
 	}
 	public int getWager(){
 		int wager = scan.nextInt();
+		scan.nextLine();
 		return wager;
 	}
 	public void displayPot(int pot){
