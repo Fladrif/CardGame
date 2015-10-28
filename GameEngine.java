@@ -18,11 +18,13 @@ public class GameEngine{
 		deck = new Deck();
 		deck.shuffle();
 		dealer = new Player("Dealer", 111);
+		hand = new LinkedList<Hand>();
 	}
 
 	//Needs to find and return (next?) hand from 'hand' given
 	//the player's ID number
-	private void makeFilterate(int playerId){
+	//**Make 'makeFilterate' private, and implement in class
+	public void makeFilterate(int playerId){
 		filterate = hand.stream().filter((hands) -> hands.getPlayerId() == playerId).iterator();
 	}
 	
@@ -61,10 +63,8 @@ public class GameEngine{
 		and return correct index location of the hand.
 	*/
 	public void dealerPlays(){
-		makeFilterate(0111);
-		Hand handHold = filterate.next();
-		while(calHand(handHold) < 17){
-			handHold.addCard(deck.deal());
+		while(calHand(getHand(dealer.getId())) < 17){
+			getHand(dealer.getId()).addCard(deck.deal());
 		}
 	/*
 		while(calHand(dealer) < 17){
@@ -134,19 +134,15 @@ public class GameEngine{
 	public int calPlayerHand(){
 		return calHand(playerHand);
 	}
-	/*
 	public int calDealerHand(){
-		return calHand(playerHand);
+		return calHand(getHand(dealer.getId()));
 	}
-	*/
 	public Card[] getPlayerHand(){
 		return playerHand.showHand();
 	}
-	/*
 	public Card[] getDealerHand(){
-		return playerHand.showHand();
+		return getHand(dealer.getId()).showHand();
 	}
-	*/
 
 	public boolean isPlayerWin(){
 		if(calHand(playerHand) <= 21 && calHand(getHand(dealer.getId())) <= 21){
