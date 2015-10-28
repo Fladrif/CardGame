@@ -23,7 +23,7 @@ public class GameEngine{
 	//Needs to find and return (next?) hand from 'hand' given
 	//the player's ID number
 	private void makeFilterate(int playerId){
-		filterate = hand.stream().filter((hands) -> hands.getPlayerId() == playerId).iterate();
+		filterate = hand.stream().filter((hands) -> hands.getPlayerId() == playerId).iterator();
 	}
 	
 	private int calHand(Hand hand){
@@ -125,7 +125,7 @@ public class GameEngine{
 
 	//Gets and returns first hand of given player in the list
 	public Hand getHand(int playerId){
-		return hand.stream().filter((hands) -> hands.getPlayerId() == playerId).toArray()[0];
+		return hand.stream().filter((hands) -> hands.getPlayerId() == playerId).iterator().next();
 	}
 
 	public void playerDeal(){
@@ -155,7 +155,7 @@ public class GameEngine{
 			} else {
 				return false;
 			}
-		} else if (calHand(playerHand) <= 21 && calHand(gethand(dealer.getId())) > 21){
+		} else if (calHand(playerHand) <= 21 && calHand(getHand(dealer.getId())) > 21){
 			return true;
 		} else {
 			return false;
