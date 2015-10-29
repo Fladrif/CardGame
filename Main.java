@@ -7,7 +7,7 @@ public class Main {
 			CommandUi run = new CommandUi();
 			GameLogic logic = new GameLogic(run);
 		} else if (args[0].equals("gui")){
-			new SwingUi();
+			GameLogic logic = new GameLogic(new SwingUi());
 		}
 	}
 

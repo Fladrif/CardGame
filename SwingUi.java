@@ -33,6 +33,10 @@ public class SwingUi implements Ui{
 		//make hit button and add functionality
 		hit = new JButton("Hit");
 		hit.setEnabled(false);
+		hit.addActionListener((ae) -> {hit.setEnabled(false);
+			stay.setEnabled(false);
+			resp = "hit";});
+		/*
 		hit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 				hit.setEnabled(false);
@@ -40,6 +44,7 @@ public class SwingUi implements Ui{
 				resp = "hit";
 			}
 		});
+		*/
 
 		//make stay button and add functionality
 		stay = new JButton("Stay");
@@ -98,7 +103,6 @@ public class SwingUi implements Ui{
 		frame.setVisible(true);
 		frame.revalidate();
 		frame.repaint();
-		GameLogic logic = new GameLogic(this);
 	}
 	public void setMessage(String message){
 		messageLab.setText(message);
