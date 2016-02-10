@@ -86,12 +86,10 @@ public class SwingUi implements Ui{
 		//make dealer's hand pane
 		dealPane = new JPanel();
 		dealPane.setLayout(new FlowLayout());
-		dealPane.add(dHand = new JLabel(image.getIconVar("d4")));
 
 		//make player's hand pane
 		handPane = new JPanel();
 		handPane.setLayout(new FlowLayout());
-		handPane.add(pHand = new JLabel(image.getIconVar("s8")));
 
 		//Populate main frame with panes
 		frame.add(dealPane);
